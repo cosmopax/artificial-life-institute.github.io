@@ -1,3 +1,6 @@
 streamlit
-vina
-openbabel
+vina-python
+pybel
+numpy
+pandas
+biopython

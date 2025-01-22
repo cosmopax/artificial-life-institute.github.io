@@ -1,0 +1,7 @@
+streamlit
+vina
+pybel
+numpy
+pandas
+biopython
+

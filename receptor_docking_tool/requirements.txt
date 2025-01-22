@@ -1,5 +1,5 @@
 streamlit
-vina-python
+vina
 pybel
 numpy
 pandas

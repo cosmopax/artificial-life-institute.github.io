@@ -1,0 +1,10 @@
+title: "Artificial Life Institute"
+description: "Exploring the frontiers of artificial life and beyond."
+baseurl: ""
+url: "https://cosmopax.github.io/artificial-life-institute.github.io"
+theme: jekyll-theme-cayman
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+

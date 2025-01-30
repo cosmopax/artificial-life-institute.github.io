@@ -3,8 +3,8 @@ import os
 import pandas as pd
 
 app = Flask(__name__)
-UPLOAD_FOLDER = "literature/"
-DATA_FILE = "literature/resources.xlsx"
+UPLOAD_FOLDER = "media/"
+DATA_FILE = "media/resources.xlsx"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 

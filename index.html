@@ -4,46 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artificial Life Institute</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>Welcome to the Artificial Life Institute</h1>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+    <header class="p-4 bg-blue-600 text-white flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Artificial Life Institute</h1>
+        <!-- Burger Menu -->
+        <button onclick="toggleMenu()" class="text-white text-2xl focus:outline-none">
+            ☰
+        </button>
     </header>
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>We are dedicated to exploring the frontiers of artificial life, blending innovation with cutting-edge research to build sustainable and intelligent solutions.</p>
-            <img src="images/Picture 1.jpeg" alt="About Us" style="width:100%;max-width:600px;">
-        </section>
-        <section>
-            <h2>Our Focus</h2>
-            <ul>
-                <li>Artificial Intelligence and Machine Learning</li>
-                <li>Evolutionary Algorithms</li>
-                <li>Synthetic Biology</li>
-                <li>Robotics</li>
-            </ul>
-            <img src="images/focus.jpg" alt="Our Focus" style="width:100%;max-width:600px;">
-        </section>
-        <section>
-            <h2>Get Involved</h2>
-            <p>Stay updated with our <a href="https://docs.google.com/document/d/1VDXJj5E8E9gr63R9vXqHrorQjc8SycWX/edit?usp=share_link">blog</a>, or <a href="contact.html">contact us</a> to collaborate.</p>
-        </section>
-         <section>
-            <h2>Materials</h2>
-            <p> <a href="literature.html">Selected Literature</a></p>
-        </section>
-        <section>
-            <h2>Tools</h2>
-            <p>Explore our tools and resources:</p>
-            <ul>
-                <li><a href="docking_app.html">Receptor-Ligand Docking Tool</a></li>
-            </ul>
-        </section>
+
+    <!-- Hidden Navigation Menu -->
+    <nav id="menu" class="hidden bg-blue-500 text-white p-4 absolute right-0 mt-2 w-48 rounded shadow-lg">
+        <a href="index.html" class="block py-2">Home</a>
+        <a href="literature.html" class="block py-2">Literature</a>
+        <a href="docking.html" class="block py-2">Docking Tool</a>
+        <a href="contact.html" class="block py-2">Contact</a>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("menu");
+            menu.classList.toggle("hidden");
+        }
+    </script>
+
+    <main class="container mx-auto p-4 text-center">
+        <h2 class="text-3xl font-bold">Welcome to the Future of Artificial Life</h2>
+        <p class="text-lg text-gray-700 mt-2">We explore the intersections of technology, biology, and artificial intelligence.</p>
+
+        <!-- Section Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold">Artificial Intelligence</h3>
+                <p class="text-gray-600">Exploring deep learning, neural networks, and AI-driven life simulations.</p>
+            </div>
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold">Synthetic Biology</h3>
+                <p class="text-gray-600">Advancing biological computation, bioinformatics, and engineered lifeforms.</p>
+            </div>
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold">Future Technologies</h3>
+                <p class="text-gray-600">Innovations shaping the next era of human-machine interactions.</p>
+            </div>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2024 Artificial Life Institute. All rights reserved.</p>
+
+    <footer class="p-4 text-center bg-blue-600 text-white mt-10">
+        &copy; 2025 Artificial Life Institute. All rights reserved.
     </footer>
+
 </body>
 </html>
+

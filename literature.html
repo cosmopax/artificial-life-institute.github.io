@@ -4,26 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Literature</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Function to handle drag-and-drop upload
+        function handleFileUpload(event) {
+            event.preventDefault();
+            let files = event.dataTransfer.files;
+            uploadFile(files[0]);
+        }
+
+        function uploadFile(file) {
+            let formData = new FormData();
+            formData.append("file", file);
+
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            }).then(response => response.json())
+            .then(data => {
+                alert("File uploaded successfully!");
+                loadResourceList(); // Refresh the resource list
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function handleUrlSubmit() {
+            let url = document.getElementById("urlInput").value;
+            let name = document.getElementById("nameInput").value;
+            let author = document.getElementById("authorInput").value;
+            let year = document.getElementById("yearInput").value;
+            let type = document.getElementById("typeInput").value;
+
+            fetch("/add_url", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, author, year, type, url })
+            }).then(response => response.json())
+            .then(data => {
+                alert("URL added successfully!");
+                loadResourceList();
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function loadResourceList() {
+            fetch("/get_resources")
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("resourceList");
+                list.innerHTML = "";
+                data.forEach(item => {
+                    let row = `<tr>
+                        <td>${item.name}</td>
+                        <td>${item.author}</td>
+                        <td>${item.year}</td>
+                        <td>${item.type}</td>
+                        <td><a href="${item.url}" target="_blank">Open</a></td>
+                    </tr>`;
+                    list.innerHTML += row;
+                });
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        document.addEventListener("DOMContentLoaded", loadResourceList);
+    </script>
 </head>
 <body>
-     <header>
+    <header>
         <h1>Literature</h1>
     </header>
-    
+
     <!-- Embed PDF Viewer -->
-    <h2>PDF Viewer</h2>
+    <h2>Holobiontic Earth</h2>
     <embed src="literature/Holobiontic_Earth°°Patrick_Schimpl_publish.pdf" width="800" height="600" type="application/pdf">
-    
-    <!-- OR using iframe 
-    <h2>PDF Viewer (Using iframe)</h2>
-    <iframe src="literature/Holobiontic_Earth°°Patrick_Schimpl_publish.pdf" width="800" height="600"></iframe>-->
+
     <main>
         <section>
-            <h2>Holobiontic Earth</h2>
-            
+            <h2>Other Material and Sources</h2>
+
+            <!-- Drag and Drop Field -->
+            <div id="dropZone" 
+                 ondrop="handleFileUpload(event)" 
+                 ondragover="event.preventDefault()" 
+                 style="border: 2px dashed #000; padding: 20px; text-align: center;">
+                Drag & Drop a PDF or File Here
+            </div>
+
+            <!-- URL Input Form -->
+            <div>
+                <h3>Add an Online Resource</h3>
+                <input type="text" id="nameInput" placeholder="Name" required>
+                <input type="text" id="authorInput" placeholder="Author(s)">
+                <input type="number" id="yearInput" placeholder="Year">
+                <select id="typeInput">
+                    <option value="Internet Source">Internet Source</option>
+                    <option value="Book">Book</option>
+                    <option value="Journal">Journal</option>
+                    <option value="Article">Article</option>
+                </select>
+                <input type="text" id="urlInput" placeholder="Paste URL Here" required>
+                <button onclick="handleUrlSubmit()">Add</button>
+            </div>
+
+            <!-- Searchable Resource List -->
+            <h3>Resource List</h3>
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search resources">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Author(s)</th>
+                        <th>Year</th>
+                        <th>Type</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="resourceList">
+                    <!-- Dynamic list populated from server -->
+                </tbody>
+            </table>
+        </section>
     </main>
+
     <footer>
         <p>&copy; 2025 Artificial Life Institute. All rights reserved.</p>
     </footer>
 </body>
 </html>
+

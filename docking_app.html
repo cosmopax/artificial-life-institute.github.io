@@ -1,4 +1,56 @@
+<!-- docking_app.html -->
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docking Tool | Artificial Life Institute</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Include the navigation bar -->
+  <!-- (Place the same navbar code here or include via a templating system) -->
+
+  <div class="container my-5">
+    <h2 class="mb-4">Receptor Docking Tool</h2>
+    <p class="mb-4">Use the tool below to simulate and analyze docking interactions.</p>
+    <div id="docking-tool-app" class="border p-4 rounded">
+      <!-- Placeholder for the tool interface -->
+      <form id="dockingForm">
+        <div class="mb-3">
+          <label for="receptorInput" class="form-label">Receptor</label>
+          <input type="text" class="form-control" id="receptorInput" placeholder="Enter receptor details">
+        </div>
+        <div class="mb-3">
+          <label for="ligandInput" class="form-label">Ligand</label>
+          <input type="text" class="form-control" id="ligandInput" placeholder="Enter ligand details">
+        </div>
+        <button type="submit" class="btn btn-success">Run Docking Simulation</button>
+      </form>
+      <div id="dockingResults" class="mt-4">
+        <!-- Results will be displayed here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: Include Bootstrap JS and your custom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simple JS to handle form submission
+    document.getElementById('dockingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Example: Fetch values and display a dummy result
+      const receptor = document.getElementById('receptorInput').value;
+      const ligand = document.getElementById('ligandInput').value;
+      const resultsDiv = document.getElementById('dockingResults');
+      resultsDiv.innerHTML = `<div class="alert alert-info">Simulating docking for receptor: <strong>${receptor}</strong> with ligand: <strong>${ligand}</strong>.</div>`;
+      // Here, integrate your actual docking tool scripts or API calls.
+    });
+  </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,4 +73,4 @@
         <a href="index.html">Return to Main Page</a>
     </footer>
 </body>
-</html>
+</html> -->
